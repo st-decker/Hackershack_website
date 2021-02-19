@@ -1,0 +1,35 @@
+[] means info, do not copy the brackets
+python manage.py runserver
+
+django-admin startproject projectname
+python manage.py createsuperuser
+python .\manage.py startapp whattostart .\stevend_website\apps\folderitsin\
+
+# Initialize an app
+python manage.py startapp public [route]stevend_website/apps/public
+^ migrations folder
+--scripts that will run on your database to create the tables that hold the values from your models
+
+Whenever you add a model to models.py file and run migrations, Django creates a script that says how to create
+database
+
+Need to register the models app. Go to settings.py, INSTALLED_APPS, add model path to app (stevend_website.apps.accounts), then python manage.py makemigrations
+You will have migrations to do now, so you need to run python manage.py migrate
+
+go to your /admin page to check above migrations worked
+If you delete your database, it will use the migrations py files to recreate it
+
+admin
+-admin
+-123 
+
+
+docker
+-Create Dockerfile
+-Create Makefile
+This is a set of commands so we don't have to run it every time
+results are cached, so keep things that are less likely to be changed towards the top
+
+
+-Postgres
+change to Postgres

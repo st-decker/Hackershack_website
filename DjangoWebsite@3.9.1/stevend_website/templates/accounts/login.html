@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h2>Login</h2>
+<form method='post'>
+    <!-- csrf token. Prevents hackers from calling webpage from other websites. Need to use whenever you have a form or submitting/fetching data-->
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit">Login</button>
+</form>
+{% endblock%}

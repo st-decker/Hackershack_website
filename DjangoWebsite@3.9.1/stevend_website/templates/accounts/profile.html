@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+<h1>
+    {{ user.get_full_name }} (@{{user.username}})
+</h1>
+
+{% with profile=user.profile %}
+    <!-- Check to see if there is a user -->
+    {% if profile %}
+        <h2>
+            {{ profile.persona|default:""}}
+        </h2>
+        <div>
+            {{ profile.bio|default:""}}
+        </div>
+        <div>
+            {% with website=profile.website|default:"" %}
+                <a href="{{website}}">{{ website }}</a>
+            {% endwith %}
+        </div>
+        <br>
+        <div>
+            <!-- Many to Many model -->
+            Interests:
+            <!-- Technically a query, so must fetch all -->
+            {% for interest in profile.interests.all %}
+                <span>
+                    <!-- If its not the last element in the loop, add a comma and space -->
+                    {{ interest.name}}{% if not forloop.last %}, {% endif %}
+                </span>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+{% endblock%}
+
+
+<!-- <h1>
+    {{ user.username }}'s profile
+</h1> -->

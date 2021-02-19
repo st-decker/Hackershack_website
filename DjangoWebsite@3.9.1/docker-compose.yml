@@ -1,0 +1,54 @@
+# Create service running python server
+version: "3.9"
+
+# specify aliases
+# &service-volumes is an alias name
+x-service-volumes: &service-volumes
+  - ./:/app/:rw,cached
+
+x-database-variables: &database-variables
+  POSTGRES_DB: postgres
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+
+# App environment variables, will reference db enviro variables as well
+x-app-variables: &app-variables
+  # need to expand the values in the db variables
+  <<: *database-variables
+
+  #name of variables you want to add
+  POSTGRES_HOST: postgres # name of the service
+
+services: 
+  website:
+    image: hackershack-website-tutorial:latest # same name as our docker image, and the tag was latest
+    command: python manage.py runserver 0.0.0.0:8000 # specify command for image to run, server is running on port 8000. need to specify
+    volumes: *service-volumes
+    environment: *app-variables
+    depends_on: #start service after migration service has run
+      - db_migrate
+    ports: # map port in container to the port we want it to run on the local machine
+      - "8000:8000"
+
+# Migrate before website boots up. Name is abitrary (db_migrate)
+  db_migrate:
+    image: hackershack-website-tutorial:latest
+    command: python manage.py migrate
+    volumes: *service-volumes
+    environment: *app-variables
+    depends_on: 
+      - postgres
+
+  postgres:
+    image: postgres    
+    ports: 
+      - "5432:5432"
+      # specify environment variables. Required. Name name of db, username, password, look at database-variables
+    environment: *database-variables
+    volumes:
+      - db-data:/var/lib/postgresql/data # volume called db-data for the directory listed
+
+volumes:
+  db-data:
+
+

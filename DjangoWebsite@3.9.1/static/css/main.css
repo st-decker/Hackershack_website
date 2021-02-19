@@ -1,0 +1,65 @@
+#main {
+    padding-top: 74px;
+  }
+
+@media (min-width: 992px) {
+    #main {
+      padding-top: 104px;
+    }
+}
+
+@font-face {
+  font-family: "Hackershack Font";
+  src: 
+    url(fonts/ibmplexmono-regular-webfont.woff) format("woff"),
+    url(fonts/IBMPlexMono-Regular.otf) format("opentype");
+}
+
+.navbar-brand {
+  font-family: "Hackershack Font";
+}
+
+.sdw-bg-primary {
+  background-color: #f35a5a;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link {
+  border-bottom: 2px solid transparent;
+  transition: border-bottom .2s color .2s;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link:hover {
+  color: #f35a5a;
+  transition: border-bottom .2s color .2s;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link.active {
+  background: none;
+  color: white;
+  border-color: #f35a5a;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link.active:hover {
+  background-color: none;
+  color: white;
+  border-color: #f35a5a;
+}
+
+.masthead {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 992px) {
+  .masthead {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.masthead {
+  background-image: url("../img/winter.jpg");
+  /* <span>Photo by <a href="https://unsplash.com/@patrikkovar?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Patrik Kovar</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span> */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
